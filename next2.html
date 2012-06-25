@@ -1,0 +1,94 @@
+<html>
+<body>
+var
+<script type="text/javascript">
+document.write(",zxnc,mz")
+</script>
+{% with friends_count=user.friends_count %}
+{% with followers_count=user.followers_count %}
+{% with tweet_count=user.statuses_count %}
+<!-- followers count-->
+{% if followers_count>=0 and followers_count<=100 : %}
+	{%	with a=(followers_count/100)*5  %}
+	{%	print a %}
+	{% endwith %}
+{% elif followers_count>100 and followers_count<=1000 : %}
+	{%	with a= 5 + (followers_count/1000)*5  %}
+	{%	print a %}
+	{% endwith %}
+{% elif followers_count>1000 and followers_count<=10000 : %}
+	{%	with a= 10 + (followers_count/10000)*5  %}
+	{%	print a %}
+	{% endwith %}
+{% elif followers_count>10000 and followers_count<=1000000 : %}
+	{%	with a= 15 + (followers_count/1000000)*5  %}
+	{%	print a %}
+	{% endwith %}
+{% elif followers_count>1000000 and followers_count<=10000000 : %}
+	{%	with a= 20 + (followers_count/10000000)*5  %}
+	{%	print a %}
+	{% endwith %}
+{% else : %}
+	{%	with a=25 %}
+	{%	print a %}
+	{% endwith %}
+{% endif %}
+<!-- following count-->
+{% if friends_count>=0 and friends_count<=100 : %}
+	{%	with b=(friends_count/100)*5  %}
+	{%	print b %}
+	{% endwith %}
+{% elif friends_count>100 and friends_count<=1000 : %}
+	{%	with b= 5 + (friends_count/1000)*5  %}
+	{%	print b %}
+	{% endwith %}
+{% elif friends_count>1000 and friends_count<=10000 : %}
+	{%	with b= 10 + (friends_count/10000)*5  %}
+	{%	print b %}
+	{% endwith %}
+{% elif friends_count>10000 and friends_count<=25000 : %}
+	{%	with b= 15 + (friends_count/25000)*5  %}
+	{%	print b %}
+	{% endwith %}
+{% elif friends_count>25000 and friends_count<=50000 : %}
+	{%	with b= 20 + (friends_count/50000)*5  %}
+	{%	print b %}
+	{% endwith %}
+{% else : %}
+	{%	with b=25 %}
+	{%	print b %}
+	{% endwith %}
+{% endif %}
+<!--tweet count-->
+{% if tweet_count>=0 and tweet_count<=100 : %}
+	{%	with c=(tweet_count/100)*5  %}
+	{%	print c %}
+	{% endwith %}
+{% elif tweet_count>100 and tweet_count<=1000 : %}
+	{%	with c= 5 + (tweet_count/1000)*5  %}
+	{%	print c %}
+	{% endwith %}
+{% elif tweet_count>1000 and tweet_count<=10000 : %}
+	{%	with c= 10 + (tweet_count/10000)*5  %}
+	{%	print c %}
+	{% endwith %}
+{% elif tweet_count>10000 and tweet_count<=25000 : %}
+	{%	with c= 15 + (tweet_count/25000)*5  %}
+	{%	print c %}
+	{% endwith %}
+{% elif tweet_count>25000 and tweet_count<=50000 : %}
+	{%	with c= 20 + (tweet_count/50000)*5  %}
+	{%	print c %}
+	{% endwith %}
+{% else : %}
+	{%	with c=25 %}
+	{%	print c %}
+	{% endwith %}
+{% endif %}
+
+{% endwith %}
+{% endwith %}
+{% endwith %}
+</body>
+</html>
+
