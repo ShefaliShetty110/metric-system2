@@ -1,94 +1,103 @@
 <html>
 <body>
-var
 <script type="text/javascript">
-document.write(",zxnc,mz")
 </script>
-{% with friends_count=user.friends_count %}
-{% with followers_count=user.followers_count %}
-{% with tweet_count=user.statuses_count %}
+
 <!-- followers count-->
+{% set followers_count=user.followers_count %}
+{% set a=0 %}
 {% if followers_count>=0 and followers_count<=100 : %}
-	{%	with a=(followers_count/100)*5  %}
-	{%	print a %}
-	{% endwith %}
+{%	set a=(followers_count/100)*5  %}
 {% elif followers_count>100 and followers_count<=1000 : %}
-	{%	with a= 5 + (followers_count/1000)*5  %}
-	{%	print a %}
-	{% endwith %}
+{%	set a= 5 + (followers_count/1000)*5  %}
 {% elif followers_count>1000 and followers_count<=10000 : %}
-	{%	with a= 10 + (followers_count/10000)*5  %}
-	{%	print a %}
-	{% endwith %}
+{%	set a= 10 + (followers_count/10000)*5  %}
 {% elif followers_count>10000 and followers_count<=1000000 : %}
-	{%	with a= 15 + (followers_count/1000000)*5  %}
-	{%	print a %}
-	{% endwith %}
+{%	set a= 15 + (followers_count/1000000)*5  %}
 {% elif followers_count>1000000 and followers_count<=10000000 : %}
-	{%	with a= 20 + (followers_count/10000000)*5  %}
-	{%	print a %}
-	{% endwith %}
+{%	set a= 20 + (followers_count/10000000)*5  %}
 {% else : %}
-	{%	with a=25 %}
-	{%	print a %}
-	{% endwith %}
+{%	set a=25 %}
 {% endif %}
+{%	print a %}
+	
 <!-- following count-->
-{% if friends_count>=0 and friends_count<=100 : %}
-	{%	with b=(friends_count/100)*5  %}
-	{%	print b %}
-	{% endwith %}
-{% elif friends_count>100 and friends_count<=1000 : %}
-	{%	with b= 5 + (friends_count/1000)*5  %}
-	{%	print b %}
-	{% endwith %}
-{% elif friends_count>1000 and friends_count<=10000 : %}
-	{%	with b= 10 + (friends_count/10000)*5  %}
-	{%	print b %}
-	{% endwith %}
-{% elif friends_count>10000 and friends_count<=25000 : %}
-	{%	with b= 15 + (friends_count/25000)*5  %}
-	{%	print b %}
-	{% endwith %}
-{% elif friends_count>25000 and friends_count<=50000 : %}
-	{%	with b= 20 + (friends_count/50000)*5  %}
-	{%	print b %}
-	{% endwith %}
+{% set following_count=user.friends_count %}
+{% set b=0 %}
+{% if following_count>=0 and following_count<=100 : %}
+{%	set b=(following_count/100)*5  %}
+{% elif following_count>100 and following_count<=1000 : %}
+{%	set b= 5 + (following_count/1000)*5  %}
+{% elif following_count>1000 and following_count<=10000 : %}
+{%	set b= 10 + (following_count/10000)*5  %}
+{% elif following_count>10000 and following_count<=25000 : %}
+{%	set b= 15 + (following_count/25000)*5  %}
+{% elif following_count>25000 and following_count<=50000 : %}
+{%	set b= 20 + (following_count/50000)*5  %}
 {% else : %}
-	{%	with b=25 %}
-	{%	print b %}
-	{% endwith %}
+{%	set b=25 %}
 {% endif %}
 <!--tweet count-->
+{% set tweet_count=user.statuses_count %}
+{% set c=0 %}
 {% if tweet_count>=0 and tweet_count<=100 : %}
-	{%	with c=(tweet_count/100)*5  %}
-	{%	print c %}
-	{% endwith %}
+	{%	set c=(tweet_count/100)*5  %}
 {% elif tweet_count>100 and tweet_count<=1000 : %}
-	{%	with c= 5 + (tweet_count/1000)*5  %}
-	{%	print c %}
-	{% endwith %}
+	{%	set c= 5 + (tweet_count/1000)*5  %}
 {% elif tweet_count>1000 and tweet_count<=10000 : %}
-	{%	with c= 10 + (tweet_count/10000)*5  %}
-	{%	print c %}
-	{% endwith %}
-{% elif tweet_count>10000 and tweet_count<=25000 : %}
-	{%	with c= 15 + (tweet_count/25000)*5  %}
-	{%	print c %}
-	{% endwith %}
-{% elif tweet_count>25000 and tweet_count<=50000 : %}
-	{%	with c= 20 + (tweet_count/50000)*5  %}
-	{%	print c %}
-	{% endwith %}
+	{%	set c= 10 + (tweet_count/10000)*5  %}
 {% else : %}
-	{%	with c=25 %}
-	{%	print c %}
-	{% endwith %}
+	{%	set c=15 %}
+{% endif %}
+{% set score = (a+b+c)/3*100 %}
+
+<!--Retweets-->
+{% set d=0 %}
+{% if max2>=0 and max2<=100 : %}
+	{%	set d=(max2/100)*5  %}
+{% elif max2>100 and max2<=250 : %}
+	{%	set d= 5 + (max2/1000)*5  %}
+{% elif max2>250 and max2<=500 : %}
+	{%	set d= 10 + (max2/10000)*5  %}
+{% else : %}
+	{%	set d=15 %}
 {% endif %}
 
-{% endwith %}
-{% endwith %}
-{% endwith %}
+<!--Power of followers-->
+{% set e=0 %}
+{% if max>=0 and max<=500 : %}
+	{%	set e=(max/100)*5  %}
+{% elif max>500 and max<=1000 : %}
+	{%	set e= 5 + (max/1000)*5  %}
+
+{% else : %}
+	{%	set e=10 %}
+{% endif %}
+<!--recency-->
+{% set f=0 %}
+{% if datedff<=10 and datedff>5 : %}
+	{%	set f=(datedff/100)*5  %}
+{% elif datedff<5 and datedff>1 : %}
+	{%	set f= 5 + (datedff/1000)*5  %}
+{% elif datedff>10 : %}
+	{%	set f= 0%}
+{% else : %}
+	{%	set f=10 %}
+{% endif %}
+{% set score = (a+b+c+d+e+f)/6*100 %}
+{% print a %}
+<br />
+{% print b %}
+<br />
+{% print c %}
+<br />
+{% print d %}
+<br />
+{% print e %}
+<br />
+{% print f %}
+<br />
+{% print score %}
+<br />
 </body>
 </html>
-
