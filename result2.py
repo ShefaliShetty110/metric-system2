@@ -6,13 +6,14 @@ import datetime
 import oauth2 #.oauth2 as oauth2
 from datetime import timedelta
 
+
 app = flask.Flask(__name__)
 # Don't do this!
 app.secret_key = "bacon"
 
 class View(flask.views.MethodView):
     def get(self):
-        return flask.render_template('backgd.html')
+        return flask.render_template('home.html')
     
     def post(self):
         log=str(flask.request.form['username'])
@@ -45,7 +46,7 @@ class View(flask.views.MethodView):
             m = a.retweet_count
             if max2 < m:
                 max2 = m
-        return flask.render_template('next2.html',user=user,api=api,max1=max1,max2=max2) 
+        return flask.render_template('index.html',user=user,api=api,max1=max1,max2=max2) 
 
 app.add_url_rule('/', view_func=View.as_view('main'), methods=['GET', 'POST','SELF'])
 

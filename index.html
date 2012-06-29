@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>Twitter Metric system</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="description" content="Scolling Up and Down with jQuery" />
+        <meta name="keywords" content="jquery, scoll, move, up, down" />
+		<link rel="stylesheet" type="text/css" href="static\style.css" media="screen"/>
+    </head>
+	
+    <body background="static\image.jpg" style ="background-repeat:no-repeat;" >
+	
+<!-- followers count-->
+{% set followers_count=user.followers_count %}
+{% set a=0 %}
+{% if followers_count>=0 and followers_count<=100 : %}
+{%	set a=(followers_count/100)*5  %}
+{% elif followers_count>100 and followers_count<=1000 : %}
+{%	set a= 5 + (followers_count/1000)*5  %}
+{% elif followers_count>1000 and followers_count<=10000 : %}
+{%	set a= 10 + (followers_count/10000)*5  %}
+{% elif followers_count>10000 and followers_count<=1000000 : %}
+{%	set a= 15 + (followers_count/1000000)*5  %}
+{% elif followers_count>1000000 and followers_count<=10000000 : %}
+{%	set a= 20 + (followers_count/10000000)*5  %}
+{% else : %}
+{%	set a=25 %}
+{% endif %}
+	
+<!-- following count-->
+{% set following_count=user.friends_count %}
+{% set b=0 %}
+{% if following_count>=0 and following_count<=100 : %}
+{%	set b=(following_count/100)*5  %}
+{% elif following_count>100 and following_count<=1000 : %}
+{%	set b= 5 + (following_count/1000)*5  %}
+{% elif following_count>1000 and following_count<=10000 : %}
+{%	set b= 10 + (following_count/10000)*5  %}
+{% elif following_count>10000 and following_count<=25000 : %}
+{%	set b= 15 + (following_count/25000)*5  %}
+{% elif following_count>25000 and following_count<=50000 : %}
+{%	set b= 20 + (following_count/50000)*5  %}
+{% else : %}
+{%	set b=25 %}
+{% endif %}
+<!--tweet count-->
+{% set tweet_count=user.statuses_count %}
+{% set c=0 %}
+{% if tweet_count>=0 and tweet_count<=100 : %}
+	{%	set c=(tweet_count/100)*5  %}
+{% elif tweet_count>100 and tweet_count<=1000 : %}
+	{%	set c= 5 + (tweet_count/1000)*5  %}
+{% elif tweet_count>1000 and tweet_count<=10000 : %}
+	{%	set c= 10 + (tweet_count/10000)*5  %}
+{% else : %}
+	{%	set c=15 %}
+{% endif %}
+
+<!--Retweets-->
+{% set d=0 %}
+{% if max2>=0 and max2<=100 : %}
+	{%	set d=(max2/100)*5  %}
+{% elif max2>100 and max2<=250 : %}
+	{%	set d= 5 + (max2/1000)*5  %}
+{% elif max2>250 and max2<=500 : %}
+	{%	set d= 10 + (max2/10000)*5  %}
+{% else : %}
+	{%	set d=15 %}
+{% endif %}
+
+<!--recency-->
+{% set e=0 %}
+{% if max1>=5 and max1<=10 : %}
+	{%	set e=(max1/10)*5  %}
+{% elif max1>1 and max1<=5 : %}
+	{%	set e= 5 + (max1/5)*5  %}
+{% elif max1<1 : %}
+	{%	set e= 10  %}
+{% else : %}
+	{%	set e=0 %}
+{% endif %}
+
+
+{% set score = (a+b+c+d+e) %}
+
+
+
+        <div id="header">Twitter Metric System</div>
+		<div id="content" class="content">
+            <!--<h1>Twitter Metric System</h1>-->
+			
+			<!--<div id="image1">
+		
+			</div>-->
+			<div id="name">
+				USERNAME: <I>{% print user.screen_name %}</I>
+			</div>	
+			
+			<br />
+			<div id="block">
+			<br /><br /><br /><br />TWEET COUNT: {% print tweet_count%}<br /><br /> <br /><br />FOLLOWERS COUNT: {% print followers_count %}<br /><br /><br /><br /> FRIENDS COUNT: {% print following_count %}<br />
+			</div>
+			<img src="static\png1.png"style = "top:160px;left:500px;height:270px;width:270px;position:absolute;">
+			<img src="static\png2.png"style = "top:120px;left:430px;height:360px;width:440px;position:absolute;">
+			<div id="total_score" style = "top:180px;left:500px;font-size:40px;">
+			<I>GRADE</I>
+				{% print score %}
+			</div>
+        </div>
+		<br>
+		<br>
+		
+		<p style=" position:absolute; left:200px; top:580px; color:#FF0000;font-size:20px">VIEW INFORMATION ABOUT YOUR ACCOUNT</p>
+		<div style="display:none;" class="nav_up" id="nav_up"></div>
+		
+		<div id="content2" class="content2">
+		ACCOUNT SUMMARY
+		<br><br><br>
+		FULL NAME: {% print user.name%}
+		<br><br><br>
+		KEPT FOOT ON TWITTER:{% print user.created_at%}
+		<br><br><br>
+		RETWEET COUNT:{% print max2 %}
+		<br><br><br>
+		DAYS SINCE LAST TWEET: {% print max1 %}
+	
+		</div>
+		<div  class="nav_down" id="nav_down";style="background-image:url('arrow_up.png' "></div>
+		<div class="footer" id="footer"> Created by: Sonali  Vrushali  Shefali  Khushbu
+		</div>
+		<br>
+		<script src="static\jquery-1.3.2.js" type="text/javascript"></script>
+		<script src="static\scroll-startstop.events.jquery.js" type="text/javascript"></script>
+		<script>
+			$(function() {
+				var $elem = $('#content2');
+								
+				$('#nav_up').fadeIn('slow');
+				$('#nav_down').fadeIn('slow');  
+				
+			
+				$(window).bind('scrollstart', function(){
+					$('#nav_up,#nav_down').stop().animate({'opacity':'0.8'});
+				});
+				$(window).bind('scrollstop', function(){
+					$('#nav_up,#nav_down').stop().animate({'opacity':'1'});
+				});
+				
+				$('#nav_down').click(
+					function (e) {
+						$('html, body').animate({scrollTop: document.body.scrollHeight}, 500);
+					}
+				);
+				$('#nav_up').click(
+					function (e) {
+						$('html, body').animate({scrollTop: '0px'}, 500);
+					}
+				);
+            });
+        </script>
+    
+	
+	</body>
+	
+</html>
