@@ -19,7 +19,6 @@
 {% else : %}
 {%	set a=25 %}
 {% endif %}
-{%	print a %}
 	
 <!-- following count-->
 {% set following_count=user.friends_count %}
@@ -49,7 +48,6 @@
 {% else : %}
 	{%	set c=15 %}
 {% endif %}
-{% set score = (a+b+c)/3*100 %}
 
 <!--Retweets-->
 {% set d=0 %}
@@ -63,28 +61,23 @@
 	{%	set d=15 %}
 {% endif %}
 
-<!--Power of followers-->
-{% set e=0 %}
-{% if max>=0 and max<=500 : %}
-	{%	set e=(max/100)*5  %}
-{% elif max>500 and max<=1000 : %}
-	{%	set e= 5 + (max/1000)*5  %}
-
-{% else : %}
-	{%	set e=10 %}
-{% endif %}
 <!--recency-->
-{% set f=0 %}
-{% if datedff<=10 and datedff>5 : %}
-	{%	set f=(datedff/100)*5  %}
-{% elif datedff<5 and datedff>1 : %}
-	{%	set f= 5 + (datedff/1000)*5  %}
-{% elif datedff>10 : %}
-	{%	set f= 0%}
+{% set e=0 %}
+{% if max1>=5 and max1<=10 : %}
+	{%	set e=(max1/10)*5  %}
+{% elif max1>1 and max1<=5 : %}
+	{%	set e= 5 + (max1/5)*5  %}
+{% elif max1<1 : %}
+	{%	set e= 10  %}
 {% else : %}
-	{%	set f=10 %}
+	{%	set e=0 %}
 {% endif %}
-{% set score = (a+b+c+d+e+f)/6*100 %}
+
+
+{% set score = (a+b+c+d+e) %}
+
+
+
 {% print a %}
 <br />
 {% print b %}
