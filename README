@@ -1,0 +1,11 @@
+Twitter metric System
+  The application calculates the twitter score based on Popularity and activeness of a particular user.
+This application is to calculate the twitt
+er score of a particular user on the basis of Popu
+larity, Activeness,etc. The factors that contribut
+e to the score are as follows:
+1) No of Followers
+2) No of Followings
+3) No of retweets
+4) Recency of Tweets
+5) No of Tweets
